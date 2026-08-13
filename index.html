@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
+<link href="https://fonts.googleapis.com/css2?family=Dancing+Script&family=Ma+Shan+Zheng&display=swap" rel="stylesheet">
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
 <title>To Rose</title>
@@ -165,7 +166,7 @@ body{
     position: relative;
     max-width: 580px;
     margin: 0 auto;
-    padding: 35px 45px 45px;
+    padding: 35px 25px 35px;
     border: 2px solid rgba(170,80,80,.4);
     border-radius: 2px;
     background: rgba(255, 250, 248, 0.92);
@@ -200,10 +201,10 @@ body{
 .letter-title.anim{animation:fadeInUp 1s ease forwards;}
 
 /* ══════ 信件正文：减少顶部间距 ══════ */
-.letter-content{font-family:'Ma Shan Zheng','Noto Serif SC',serif;font-size:19px;line-height:1.5;color:var(--ink);text-align:left;max-width:500px;margin:35px auto 0 auto;opacity:0;}
+.letter-content{font-family:'Ma Shan Zheng','Noto Serif SC',serif;font-size:19px;line-height:2;color:var(--ink);text-align:left;max-width:500px;margin:35px auto 0 auto;opacity:0;}
 .letter-content.anim{animation:fadeInUp 1.2s ease forwards;}
 .letter-content p{margin-bottom:14px;text-indent:0;}
-.letter-content .signature{text-align:right;margin-top:22px;margin-right:15px;font-family:'Brush Script MT',cursive;color:var(--ink-light);font-size:45px;font-weight:600;}
+.letter-content .signature{text-align:right;margin-top:22px;margin-right:15px;font-family: 'Dancing Script', 'Ma Shan Zheng', cursive;color:var(--ink-light);font-size:25px;font-weight:600;}
 
 @keyframes fadeInUp{0%{opacity:0;transform:translateY(20px);}100%{opacity:1;transform:translateY(0);}}
 
@@ -277,7 +278,7 @@ body{
 
       <!-- 顶部玫瑰 -->
       <div class="rose-header" id="roseHeader">
-        <svg class="header-rose" viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg" style="width:90px;height:90px;filter:drop-shadow(0 2px 4px rgba(0,0,0,0.1));">
+        <svg class="header-rose" viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg" style="width:70px;height:70px;filter:drop-shadow(0 2px 4px rgba(0,0,0,0.1));">
           <path fill="#9CDD05" d="M124.302,328.222c-2.466-2.901-5.036-5.334-7.648-7.212c-1.884-1.354-4.49-1.207-6.201,0.36
               c-32.608,29.866-18.892,84.017,24.01,94.752c2.251,0.563,4.612-0.548,5.624-2.636c0.407-0.841,0.781-1.732,1.138-2.648
               C111.438,394.378,103.302,355.204,124.302,328.222z"/>
