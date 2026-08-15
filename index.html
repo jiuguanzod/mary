@@ -24,7 +24,6 @@
 *{margin:0;padding:0;box-sizing:border-box;}
 html,body{width:100%;height:100%;overflow:hidden;font-family:'Noto Serif SC',serif;}
 
-/* ══════ 背景：偏橘暖粉调 ══════ */
 body{
   background: linear-gradient(160deg, #fdf2f0 0%, #f5e6e3 30%, #f0dcd9 60%, #e8c8c5 100%);
   display:flex;align-items:center;justify-content:center;
@@ -35,9 +34,7 @@ body{
 .particle{position:absolute;border-radius:50%;background:radial-gradient(circle,rgba(255,200,160,0.6),transparent 70%);animation:floatUp linear infinite;opacity:0;}
 @keyframes floatUp{0%{transform:translateY(100vh) scale(0);opacity:0;}10%{opacity:1;}90%{opacity:.6;}100%{transform:translateY(-10vh) scale(1);opacity:0;}}
 
-/* ══════════════════════════════════════
-   信封 · 偏橘暖红色系
-   ══════════════════════════════════════ */
+/* ══════ 信封 ══════ */
 .envelope-wrapper{
   position:relative;z-index:10;
   display:flex;flex-direction:column;align-items:center;
@@ -57,7 +54,6 @@ body{
 
 .front{position:absolute;width:0;height:0;z-index:3;}
 
-/* 翻盖 */
 .flap{
   border-left:140px solid transparent;
   border-right:140px solid transparent;
@@ -67,7 +63,6 @@ body{
   pointer-events:none;
 }
 
-/* 口袋 */
 .pocket{
   border-left:140px solid #d9a898;
   border-right:140px solid #d9a898;
@@ -77,7 +72,6 @@ body{
   border-bottom-right-radius:6px;
 }
 
-/* 信纸 */
 .letter{
   position:relative;
   background-color:#fefcf7;
@@ -104,7 +98,6 @@ body{
 .words.line3{top:50%;}
 .words.line4{top:70%;}
 
-/* close */
 .close .flap{
   transform:rotateX(0deg);
   transition:transform .4s .6s ease,z-index 1s;
@@ -117,7 +110,6 @@ body{
 }
 .close .heart{opacity:0;animation:none;}
 
-/* open */
 .open .flap{
   transform:rotateX(180deg);
   transition:transform .4s ease,z-index .6s;
@@ -129,7 +121,6 @@ body{
   z-index:2;
 }
 
-/* 爱心 */
 .hearts{position:absolute;top:90px;left:0;right:0;z-index:2;}
 .heart{position:absolute;bottom:0;right:10%;pointer-events:none;}
 .heart::before,.heart::after{
@@ -148,7 +139,6 @@ body{
 @keyframes slideUp{0%{top:0;}100%{top:-600px;}}
 @keyframes sideSway{0%{margin-left:0;}100%{margin-left:50px;}}
 
-/* 提示文字 */
 .hint{margin-top:25px;color:#b07060;font-size:14px;letter-spacing:3px;animation:pulse 2s ease-in-out infinite;font-family:'Noto Serif SC',serif;}
 @keyframes pulse{0%,100%{opacity:.4;transform:scale(1);}50%{opacity:1;transform:scale(1.05);}}
 
@@ -157,54 +147,65 @@ body{
 .letter-fullscreen.show{opacity:1;pointer-events:auto;transition:opacity 1.2s ease;}
 .letter-fullscreen::before{content:'';position:fixed;inset:0;background:url("data:image/svg+xml,%3Csvg width='200' height='200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='t'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='200' height='200' filter='url(%23t)' opacity='0.018'/%3E%3C/svg%3E");pointer-events:none;z-index:0;}
 
-/* ══════ 信件滚动区：缩减底部空白 ══════ */
-.letter-scroll{min-height:100%;padding:28px 24px 36px;position:relative;z-index:1;display:flex;align-items:flex-start;justify-content:center;}
-
-/* ══════ 信件框架：收紧内边距 ══════ */
-
-.letter-frame {
-    position: relative;
-    max-width: 1000px;
-    margin: 0 auto;
-    padding: 35px 10px 35px;
-    border: 2px solid rgba(170,80,80,.4);
-    border-radius: 2px;
-    background: rgba(255, 250, 248, 0.92);
-    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.2);
+.letter-scroll{
+  min-height:100%;
+  padding:20px 12px 30px;
+  position:relative;z-index:1;
+  display:flex;align-items:flex-start;justify-content:center;
 }
 
-/* ══════ 顶部玫瑰：缩小尺寸 ══════ */
+/* ══════ 信件容器 ══════ */
+.letter-container{
+  position:relative;
+  max-width:600px;
+  width:100%;
+  margin:0 auto;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+}
+
+/* ══════ 顶部玫瑰 ══════ */
 .rose-header{
   display:flex;justify-content:center;
-  margin-bottom:0;margin-top:-12px;padding-top:4px;opacity:0;
+  margin-bottom:0;        /* ← 调这个：花与标题的自然间距 */
+  padding-top:8px;        /* ← 调这个：花距离顶部的距离 */
+  opacity:0;
 }
 .rose-header.anim{animation:fadeInDown 1s ease forwards;}
 @keyframes fadeInDown{0%{opacity:0;transform:translateY(-12px);}100%{opacity:1;transform:translateY(0);}}
-.header-rose{width:110px;height:110px;}
 
-/* 分隔线 */
-.ornament-line{display:flex;align-items:center;justify-content:center;gap:12px;margin:4px 0 18px;opacity:0;}
-.ornament-line.anim{animation:fadeInUp 1s ease forwards;}
-.orn-line{width:60px;height:1px;background:linear-gradient(90deg,transparent,var(--rose-pale),transparent);}
-
-/* ══════ 信件标题：减少上方负边距 ══════ */
+/* ══════ 信件标题 ══════ */
 .letter-title{
   position:relative;z-index:2;
-  margin-top:-52px;
   text-align:center;
   font-family:'Noto Serif SC',serif;
   font-size:22px;font-weight:bold;
   color:#5a4030;letter-spacing:4px;
   opacity:0;
+  margin-top:-42px;       /* ← 调这个：负值越大，标题越往上叠入花中 */
+  margin-bottom:36px;     /* ← 调这个：标题与下方图片的间距 */
   text-shadow:0 0 8px pink,0 0 16px pink;
 }
 .letter-title.anim{animation:fadeInUp 1s ease forwards;}
 
-/* ══════ 信件正文：减少顶部间距 ══════ */
-.letter-content{font-family:'Ma Shan Zheng','Noto Serif SC',serif;font-size:16px;line-height:2;color:var(--ink);text-align:left;max-width:1000px;margin:35px auto 0 auto;opacity:0;}
-.letter-content.anim{animation:fadeInUp 1.2s ease forwards;}
-.letter-content p{margin-bottom:14px;text-indent:0;}
-.letter-content .signature{text-align:right;margin-top:22px;margin-right:15px;font-family: 'Dancing Script', 'Ma Shan Zheng', cursive;color:var(--ink-light);font-size:25px;font-weight:600;}
+/* ══════ 信件图片 ══════ */
+.letter-image-wrap{
+  width:100%;
+  opacity:0;
+}
+.letter-image-wrap.anim{animation:fadeInUp 1.2s ease forwards;}
+
+.letter-image{
+  display:block;
+  width:100%;
+  height:auto;
+  border-radius:4px;
+  box-shadow:
+    0 2px 8px rgba(0,0,0,0.10),
+    0 8px 30px rgba(0,0,0,0.12),
+    0 0 0 1px rgba(0,0,0,0.03);
+}
 
 @keyframes fadeInUp{0%{opacity:0;transform:translateY(20px);}100%{opacity:1;transform:translateY(0);}}
 
@@ -237,8 +238,13 @@ body{
   .open .letter{transform:translateY(-53px);}
   .heart::before,.heart::after{width:40px;height:64px;border-radius:40px 40px 0 0;}
   .heart::before{left:40px;}
-  .letter-frame{padding:18px 16px 24px;}
-  .letter-content{font-size:17px;}
+  .letter-scroll{padding:14px 8px 24px;}
+  .letter-title{font-size:20px;margin-top:-38px;}
+}
+
+@media(min-width:768px){
+  .letter-container{max-width:640px;}
+  .letter-scroll{padding:30px 20px 40px;}
 }
 </style>
 </head>
@@ -270,15 +276,11 @@ body{
 <!-- ══════ 全屏信件 ══════ -->
 <div class="letter-fullscreen" id="letterFull">
   <div class="letter-scroll">
-    <div class="letter-frame">
-      <div class="corner corner-tl"></div>
-      <div class="corner corner-tr"></div>
-      <div class="corner corner-bl"></div>
-      <div class="corner corner-br"></div>
+    <div class="letter-container">
 
       <!-- 顶部玫瑰 -->
       <div class="rose-header" id="roseHeader">
-        <svg class="header-rose" viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg" style="width:70px;height:70px;filter:drop-shadow(0 2px 4px rgba(0,0,0,0.1));">
+        <svg viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg" style="width:70px;height:70px;filter:drop-shadow(0 2px 4px rgba(0,0,0,0.1));">
           <path fill="#9CDD05" d="M124.302,328.222c-2.466-2.901-5.036-5.334-7.648-7.212c-1.884-1.354-4.49-1.207-6.201,0.36
               c-32.608,29.866-18.892,84.017,24.01,94.752c2.251,0.563,4.612-0.548,5.624-2.636c0.407-0.841,0.781-1.732,1.138-2.648
               C111.438,394.378,103.302,355.204,124.302,328.222z"/>
@@ -320,21 +322,11 @@ body{
 
       <div class="letter-title" id="letterTitle">To Rose</div>
 
-      <div class="ornament-line" id="ornLine">
-        <span class="orn-line"></span>
-        <span class="orn-dot"></span>
-        <span class="orn-line"></span>
+      <!-- 信件图片 -->
+      <div class="letter-image-wrap" id="letterImage">
+        <img class="letter-image" src="https://raw.githubusercontent.com/miancha/Sophyjubensha/refs/heads/main/letter.jpg" alt="Letter to Rose">
       </div>
 
-      <div class="letter-content" id="letterContent">
-        <p style="text-indent: 2em;">	小甜心，留给妈妈的最后一句话，怎么也不说完再走呢？怎么也不听听妈妈想说的话呢？</p>
-        <p style="text-indent: 2em;">你当然是我的孩子，在我们第一次见面时，我就说过，神为爱他的人所准备的，是眼睛未曾看到，耳朵未曾听到，人心也未曾想到过的美好。你是上帝为我准备的，最宝贵的礼物。也许我与我的亲生孩子没有成为母子的缘分，可你的出现让我知道，是神在怜悯我，他允许我成为一个真正的母亲了。原来我一生的侍奉都是为了等到神把你送来我的身边。</p>
-        <p style="text-indent: 2em;">小甜心，你会原谅我不能陪着你去天堂吗？最后的那段日子，每次你躲起来不见我都会让我无比难过，我想是我哪里做错了，才会让你不敢见我。也许当初不管你说什么，我都不该让你一个人回到美国。</p>
-        <p style="text-indent: 2em;">至少我还能为你做一件事。宝贝，直到生命的最后一刻你都在我的怀里，这就够了。</p>
-        <p style="text-indent: 2em;margin: 0;">你的笑容会在天堂绽放的，上帝答应我了。</p>
-        <p style="text-indent: 2em;">晚安，小甜心。</p>
-        <div class="signature">—Mary</div>
-      </div>
     </div>
   </div>
 </div>
@@ -432,11 +424,8 @@ function openEnvelope(){
     document.getElementById('letterTitle').classList.add('anim');
   },3000);
   setTimeout(function(){
-    document.getElementById('ornLine').classList.add('anim');
-  },3300);
-  setTimeout(function(){
-    document.getElementById('letterContent').classList.add('anim');
-  },3600);
+    document.getElementById('letterImage').classList.add('anim');
+  },3400);
 
   setTimeout(function(){
     createPetals();
